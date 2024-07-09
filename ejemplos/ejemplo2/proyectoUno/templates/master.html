@@ -4,12 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
-
+    <link rel="stylesheet" href="{% static 'assets/css/main.css'}" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-
+    <script type="text/javascript" href="{% static 'assets/js/jquery.min.js'}"></script>
+    <script type="text/javascript" href="{% static 'assets/js/jquery.dropotron.min.js'}"></script>
+    <script type="text/javascript" href="{% static 'assets/js/browser.min.js'}"></script>
+    <script type="text/javascript" href="{% static 'assets/js/breakpoints.min.js'}"></script>
+    <script type="text/javascript" href="{% static 'assets/js/util.js'}"></script>
+    <script type="text/javascript" href="{% static 'assets/js/main.js'}"></script>
     <title>
       {% block title %}
       {% endblock %}
@@ -20,8 +24,10 @@
     {% load socialaccount %}
     {% load account %}
   <header>
-    <img src="{% static 'images/logo.png' %}" height="10%" width="10%" alt="My image">
-    <h1>Aplicación Administración - 2 </h1>
+    <title>App de Gestión</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css'}" />
 
     <div class="">
         {% if messages %}
