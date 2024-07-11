@@ -26,13 +26,29 @@
         <td>{{ e.cedula }}</td>
         <td>{{ e.correo }}</td>
         <td>
-          <ul>
-            {% for t in e.numeros_telefonicos.all %}
-            <li class="viñeta">
-              {{ t.telefono }} - {{ t.tipo }} - [<a href="{% url 'editar_numero_telefonico' t.id %}"><i class="fas fa-edit"> Editar</i></a>]
-            </li>
-            {% endfor %}
-          </ul>
+          <table>
+            <thead>
+              <tr>
+                <th>Teléfono</th>
+                <th>Tipo</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for t in e.numeros_telefonicos.all %}
+              <tr>
+                <td>{{ t.telefono }}</td>
+                <td>{{ t.tipo }}</td>
+                <td>
+                  <a href="{% url 'editar_numero_telefonico' t.id %}">
+                    <i class="fas fa-edit"> Editar</i>
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          
           [<a href="{% url 'crear_numero_telefonico_estudiante' e.id %}"><i class="fas fa-plus-circle"> Telefono</i></a>]
         </td>
         <td>
