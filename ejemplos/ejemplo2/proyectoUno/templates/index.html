@@ -6,9 +6,10 @@
 
 {% block content %}
 <div class="container">
+  <div form-container-uno></div>
   <h3>Número de estudiantes {{ numero_estudiantes }}</h3>
 
-  <table id="tabla_datos" class="display" style="width:100%">
+  <table id="myTable" class="display" style="width:100%">
     <thead>
       <tr>
         <th>Estudiante</th>
@@ -27,7 +28,7 @@
         <td>
           <ul>
             {% for t in e.numeros_telefonicos.all %}
-            <li>
+            <li class="viñeta">
               {{ t.telefono }} - {{ t.tipo }} - [<a href="{% url 'editar_numero_telefonico' t.id %}"><i class="fas fa-edit"> Editar</i></a>]
             </li>
             {% endfor %}
@@ -45,13 +46,7 @@
     </tbody>
   </table>
 </div>
-
 {% endblock %}
 
 {% block scripts %}
-<script>
-  $(document).ready(function () {
-    $('#tabla_datos').DataTable();
-  });
-</script>
 {% endblock %}

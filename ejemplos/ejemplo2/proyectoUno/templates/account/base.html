@@ -8,54 +8,48 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   <title>{% block head_title %}{% endblock %}</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
   {% block extra_head %}
+
   {% endblock %}
 </head>
 
 <body>
   {% block body %}
+    <div class="form-container-uno">
+      {% if messages %}
+      <div>
+        <strong>{% trans "Messages:" %}</strong>
+        <ul>
+          {% for message in messages %}
+          <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
 
-  {% if messages %}
-  <div class="container mt-3">
-    <div class="alert alert-info">
-      <strong>{% trans "Messages:" %}</strong>
-      <ul class="list-unstyled">
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
-  {% endif %}
-
-  <div class="container mt-3">
-    <div class="row">
-      <div class="col">
-        <h5 class="mb-3">{% trans "Menu:" %}</h5>
-        <ul class="list-unstyled">
+      <div>
+        <strong>{% trans "Menu" %}</strong>
+        <ul>
           {% if user.is_authenticated %}
-          <li><a href="{% url 'account_email' %}" class="btn btn-primary">{% trans "Change E-mail" %}</a></li>
-          <li><a href="{% url 'account_logout' %}" class="btn btn-secondary">{% trans "Sign Out" %}</a></li>
+          <li><a href="{% url 'account_email' %}">{% trans "Change E-mail" %}</a></li>
+          <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
           {% else %}
-          <li><a href="{% url 'account_login' %}" class="btn btn-primary">{% trans "Sign In" %}</a></li>
-          <li><a href="{% url 'account_signup' %}" class="btn btn-primary">{% trans "Sign Up" %}</a></li>
+          <li><a href="{% url 'account_login' %}">{% trans "Sign In" %}</a></li>
+          <li><a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a></li>
           {% endif %}
         </ul>
       </div>
     </div>
-  </div>
+      {% block content %}
 
-  {% block content %}
-  {% endblock %}
-
-  {% endblock %}
-
+      {% endblock %}
+  {% endblock body %}
+ 
   {% block extra_body %}
-  {% endblock %}
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kFV5c5Ct6p5l+hUGPjL4I5w4YFVaoLUjAwq+qVk5p4D3eWp1FZHpQUwP2qtm+tJd"
-    crossorigin="anonymous"></script>
+  {% endblock %}
 </body>
 
 </html>

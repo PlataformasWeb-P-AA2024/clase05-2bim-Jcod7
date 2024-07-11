@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width" />
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'assets/css/main.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos2.css' %}">
-  <!-- <link rel="stylesheet" type="text/css" href="{% static 'a/css/estilos.css' %}">-->
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https:////cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+
   <title>
     {% block title %}
     {% endblock %}
@@ -24,8 +24,8 @@
   <div id="header-wrapper">
     <header id="header" class="container">
       <div id="logo">
-        <h1><a href="{% url 'index' %}">UTPL</a></h1>
-        <span>App Administrativa</span>
+        <h1><a href="{% url 'index' %}">Directorio</a></h1>
+        <span class="name">WEB +</span>
         <!-- Nav -->
         <nav id="nav">
           <div class="">
@@ -41,17 +41,18 @@
             {% if user.is_authenticated %}
             <li class="current"> <span class="nombre_usuario"> Bienvenido: {{user.username}} </span></li>
             {% endif %}
-            <li><a href="{% url 'index' %}">inicio</a></li>
-            <li><a href="{% url 'crear_estudiante' %}">agregar estudiante</a></li>
-            <li><a href="{% url 'crear_numero_telefonico' %}">agregar telefono</a></li>
+            <li><a href="{% url 'index' %}">Inicio</a></li>
+            <li><a href="{% url 'crear_estudiante' %}">Agregar estudiante</a></li>
+            <li><a href="{% url 'crear_numero_telefonico' %}">Agregar telefono</a></li>
             {% if user.is_authenticated %}
-            <li><a href="{% url 'logout_view' %}">salir</a></li>
+            <li><a href="{% url 'logout_view' %}">Salir</a></li>
             {% else %}
-            <li><a href="{% url 'login' %}">ingresar</a></li>
-            <li><a href="{% provider_login_url 'github' %}">ingresar con GitHub</a></li>
+            <li><a href="{% url 'login' %}">Ingresar</a></li>
+            <li><a href="{% provider_login_url 'github' %}">Ingresar con GitHub</a></li>
             {% endif %}
           </ul>
         </nav>
+      </div>
     </header>
     <section>
       <br>
@@ -66,13 +67,20 @@
 
             <!-- Links -->
             <section class="widget links">
-              <h3>Random Stuff</h3>
+                 <h3>Menu</h3>
               <ul class="style2">
-                <li><a href="#">Etiam feugiat condimentum</a></li>
-                <li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-                <li><a href="#">Sed porttitor cras in erat nec</a></li>
-                <li><a href="#">Felis varius pellentesque potenti</a></li>
-                <li><a href="#">Nullam scelerisque blandit leo</a></li>
+                {% if user.is_authenticated %}
+                <li class="current"> <span class="nombre_usuario"> Bienvenido: {{user.username}} </span></li>
+                {% endif %}
+                <li><a href="{% url 'index' %}">Inicio</a></li>
+                <li><a href="{% url 'crear_estudiante' %}">Agregar estudiante</a></li>
+                <li><a href="{% url 'crear_numero_telefonico' %}">Agregar telefono</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'logout_view' %}">Salir</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Ingresar</a></li>
+                <li><a href="{% provider_login_url 'github' %}">Ingresar con GitHub</a></li>
+                {% endif %}
               </ul>
             </section>
 
@@ -81,14 +89,7 @@
 
             <!-- Links -->
             <section class="widget links">
-              <h3>Random Stuff</h3>
-              <ul class="style2">
-                <li><a href="#">Etiam feugiat condimentum</a></li>
-                <li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-                <li><a href="#">Sed porttitor cras in erat nec</a></li>
-                <li><a href="#">Felis varius pellentesque potenti</a></li>
-                <li><a href="#">Nullam scelerisque blandit leo</a></li>
-              </ul>
+           
             </section>
 
           </div>
@@ -96,14 +97,7 @@
 
             <!-- Links -->
             <section class="widget links">
-              <h3>Random Stuff</h3>
-              <ul class="style2">
-                <li><a href="#">Etiam feugiat condimentum</a></li>
-                <li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-                <li><a href="#">Sed porttitor cras in erat nec</a></li>
-                <li><a href="#">Felis varius pellentesque potenti</a></li>
-                <li><a href="#">Nullam scelerisque blandit leo</a></li>
-              </ul>
+             
             </section>
 
           </div>
@@ -128,7 +122,7 @@
         <div class="row">
           <div class="col-12">
             <div id="copyright">
-              <ul class="menu">
+        >
                 <li>&copy; Derechos reservados</li>
                 <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
               </ul>
@@ -140,6 +134,7 @@
   </div>
   <!-- Scripts -->
   <!--<script src="{% static 'assets/js/jquery.min.js' %}"></script>-->
+  <script>let table = new DataTable('#myTable');</script>
   <script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
   <script src="{% static 'assets/js/browser.min.js' %}"></script>
   <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
